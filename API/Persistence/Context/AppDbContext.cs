@@ -1,4 +1,5 @@
-﻿using API.Domain.Models;
+﻿using API.Domain.Helpers;
+using API.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Persistence
@@ -29,6 +30,26 @@ namespace API.Persistence
             builder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(50);
             builder.Entity<Product>().Property(p => p.QuantityInPackage).IsRequired();
             builder.Entity<Product>().Property(p => p.UnitOfMeasurement).IsRequired();
+
+            builder.Entity<Product>().HasData
+            (
+                new Product
+                {
+                    Id = 1,
+                    Name = "Arroz",
+                    QuantityInPackage = 2,
+                    UnitOfMeasurement = EUnitOfMeasurement.Kilogram,
+                    CategoryId = 1
+                },
+                new Product
+                {
+                    Id = 2,
+                    Name = "Detergente",
+                    QuantityInPackage = 1,
+                    UnitOfMeasurement = EUnitOfMeasurement.Liter,
+                    CategoryId = 2,
+                }
+            );
 
         }
     }

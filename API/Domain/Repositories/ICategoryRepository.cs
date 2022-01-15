@@ -1,12 +1,17 @@
-﻿using API.Domain.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using API.Domain.Models;
 
 namespace API.Domain.Repositories
 {
-    public class ICategoryRepository
+    public interface ICategoryRepository
     {
-        public async Task<IEnumerable<Category>> ListAsync()
-        {
-            return null;
-        }
+        Task<IEnumerable<Category>> ListAsync();
+        Task AddAsync(Category category);
+        Task<Category> FindByIdAsync(int id);
+        void Update(Category category);
+        void Remove(Category category);
     }
 }
